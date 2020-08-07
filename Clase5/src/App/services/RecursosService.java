@@ -27,9 +27,9 @@ public class RecursosService {
        
         cMano = new Cursor(Cursor.HAND_CURSOR);
 
-		iUsuario = new ImageIcon("../clase4/recursos/perfil.png");
-		iportada = new ImageIcon("../clase4/recursos/imagen-estadistica.png");
-		iIconos = new ImageIcon("../clase4/recursos/icons.png");
+		iUsuario = new ImageIcon("recursos/perfil.png");
+		iportada = new ImageIcon("recursos/imagen-estadistica.png");
+		iIconos = new ImageIcon("recursos/icons.png");
 		
 		border = BorderFactory.createMatteBorder(0, 0, 2, 0, Color.DARK_GRAY);
     }

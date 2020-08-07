@@ -29,7 +29,7 @@ import javax.swing.border.Border;
 import App.services.ObjGraficoService;
 import App.services.RecursosService;
 
-public class loginTemplate extends JFrame implements ActionListener{
+public class loginTemplate extends JFrame{
 
 	private JPanel pDerecha, pIzquierda;
 	private JLabel lEslogan, lNotificaciones, lUsuario, lPortada, lIconos;
@@ -47,9 +47,13 @@ public class loginTemplate extends JFrame implements ActionListener{
 	//DEclarar servicios
     private ObjGraficoService sObjGraficos;
     private RecursosService sRecursos;
+    private LoginComponent loginComponent;
 	
-	public loginTemplate() {
-        sObjGraficos = ObjGraficoService.getService();
+	public loginTemplate(LoginComponent loginComponent) {
+	
+        this.loginComponent = loginComponent;
+        
+		sObjGraficos = ObjGraficoService.getService();
         sRecursos = RecursosService.getService();
         
 		this.crearObjDecoradores();
@@ -105,16 +109,19 @@ public class loginTemplate extends JFrame implements ActionListener{
 	public void crearJButtons() {
 		bEntrar = sObjGraficos.construirJButton("Siguiente >", (pDerecha.getWidth() - 125 / 2) - 125, 300, 125, 45,
 				sRecursos.getcMano(), null, sRecursos.getFontBotones(),sRecursos.getColorAzul(), Color.WHITE, null, "c", true);
+		bEntrar.addActionListener(loginComponent);
 		pDerecha.add(bEntrar);
+		
 		
 		bRegistrarse = sObjGraficos.construirJButton("Registrarse", (pDerecha.getWidth() - 125 / 2) - 280, 300, 125, 45,
 				sRecursos.getcMano(), null, sRecursos.getFontBotones(),sRecursos.getColorAzul(), Color.WHITE, null, "c", true);
+		bRegistrarse.addActionListener(loginComponent);
 		pDerecha.add(bRegistrarse);
+		
 		
 		bCerrar = sObjGraficos.construirJButton("X", 330, 10, 45, 30,
 				sRecursos.getcMano(), null, sRecursos.getFontBotones(),sRecursos.getColorAzul(), Color.WHITE, null, "c", true);
-
-		bCerrar.addActionListener(this);
+		bCerrar.addActionListener(loginComponent);
 		pDerecha.add(bCerrar);
 
 	}
@@ -177,11 +184,40 @@ public class loginTemplate extends JFrame implements ActionListener{
 
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-			if(e.getSource()==bCerrar) {
-				System.exit(0);
-			}
-			
-	}
+
+
+    public JButton getBCerrar(){
+        return this.bCerrar;
+    }
+
+    public JButton getBEntrar(){
+    	
+        return this.bEntrar;
+    }
+
+    public JButton getBRegistrarse(){
+        return this.bRegistrarse;
+    }
+
+
+    public JTextField getTNombreUsuario(){
+        return this.tNombreUsuario;
+    }
+
+    public JPasswordField getTClaveUsuario(){
+        return this.tClaveUsuario;
+    }
+
+    public JComboBox<String> getCbTipoUsuario(){
+        return this.cbTipoUsuario;
+    }
+
+    public JCheckBox getCheckSi(){
+        return this.checkSi;
+    }
+
+    public JCheckBox getCheckNo(){
+        return this.checkNo;
+    }
+
 }
